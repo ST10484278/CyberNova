@@ -7,7 +7,33 @@ namespace CyberNova
         static void Main(string[] args)
         {
             CyberNovaBot bot = new CyberNovaBot();
+            try
+            {
+                Console.WriteLine("Program directory:");
+                Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
 
+                string path = Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    "greeting.wav"
+                );
+
+                if (File.Exists(path))
+                {
+                    Console.WriteLine("Audio file found. Playing sound...");
+                    SoundPlayer player = new SoundPlayer(path);
+                    player.PlaySync();
+                }
+                else
+                {
+                    Console.WriteLine("Audio file NOT found at:");
+                    Console.WriteLine(path);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Audio file could not be played.");
+                Console.WriteLine(ex.Message);
+            }
 
             Console.WriteLine("Please enter your name to begin the conversation.");
             string userName = Console.ReadLine();
