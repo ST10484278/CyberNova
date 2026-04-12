@@ -8,13 +8,13 @@ namespace CyberNova
         {
             CyberNovaBot bot = new CyberNovaBot();
 
-          
+
             Console.WriteLine("Please enter your name to begin the conversation.");
             string userName = Console.ReadLine();
-            Console.WriteLine("Hello " +userName+"! Welcome to cybersecurity chatbot.");
-    
+            Console.WriteLine("Hello " + userName + "! Welcome to cybersecurity chatbot.");
 
-            
+
+
             Console.WriteLine("Type 'help' for topics.");
             Console.WriteLine("Type 'exit' to quit.");
 
