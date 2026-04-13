@@ -40,7 +40,7 @@ namespace CyberNova
             }
         }
 
-        public string GetResponse(string userInput)
+        public string GetResponse(string userInput, string userName)
         {
             if (string.IsNullOrWhiteSpace(userInput))
                 return "Please type a question.";
@@ -131,7 +131,7 @@ namespace CyberNova
             // Exit command
             if (input == "exit")
             {
-                return "Goodbye! Stay safe online.";
+                return "Goodbye " + userName + "! Stay safe online.";
             }
 
             // Default response
@@ -146,12 +146,7 @@ namespace CyberNova
                 "- Safe password practices\n" +
                 "- Suspicious links\n" +
                 "- Malware and ransomware\n" +
-                "- Cybersecurity basics\n\n" +
-                "You can also ask:\n" +
-                "- How are you?\n" +
-                "- What is your purpose?\n" +
-                "- Who are you?\n" +
-                "- What can you do?";
+                "- Cybersecurity basics";
         }
     }
 }

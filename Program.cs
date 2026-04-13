@@ -1,46 +1,59 @@
-﻿using System.Media;
-using System.IO;
+﻿using System;
+using System.Threading;
+
 namespace CyberNova
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            CyberNovaBot bot = new CyberNovaBot();
-            bot.PlayGreetingAudio();
-            
-            Console.WriteLine("========================================================================");
-            Console.WriteLine(@"_________       ______             _____   ________               
-__  ____/____  ____  /________________  | / /_  __ \__   _______ _
-_  /    __  / / /_  __ \  _ \_  ___/_   |/ /_  / / /_ | / /  __ `/
-/ /___  _  /_/ /_  /_/ /  __/  /   _  /|  / / /_/ /__ |/ // /_/ / 
-\____/  _\__, / /_.___/\___//_/    /_/ |_/  \____/ _____/ \__,_/  
-        /____/                                                    ");
+            UI_ENHANCER.SetConsoleStyle();
 
-            Console.WriteLine("========================================================================");
+            CyberNovaBot bot = new CyberNovaBot();
+
+            bot.PlayGreetingAudio();
+
+            UI_ENHANCER.DisplayWelcomeBanner();
+
+            UI_ENHANCER.DisplayHeader("User Setup");
+
             Console.WriteLine("Please enter your name to begin the conversation.");
             string userName = Console.ReadLine();
-            Console.WriteLine("Hello " + userName + "! Welcome to cybersecurity chatbot.");
 
+            Thread.Sleep(500);
 
+            UI_ENHANCER.DisplayBotMessage(
+                "Hello " + userName +
+                "! I am CyberNova, your cybersecurity assistant."
+            );
 
+            UI_ENHANCER.DisplayHeader("Available Commands");
 
+            Console.WriteLine("Type 'help' to see topics");
+            Console.WriteLine("Type 'exit' to quit");
 
-            Console.WriteLine("Type 'help' for topics.");
-            Console.WriteLine("Type 'exit' to quit.");
+            UI_ENHANCER.PrintDivider();
 
             while (true)
             {
-                Console.Write("\nYou: ");
+                UI_ENHANCER.DisplayUserPrompt();
+
                 string userInput = Console.ReadLine();
 
-                string response = bot.GetResponse(userInput);
+                string response =
+                    bot.GetResponse(userInput, userName);
 
-                Console.WriteLine("CyberNova: " + response);
+                UI_ENHANCER.DisplayBotMessage(response);
 
                 if (userInput.ToLower() == "exit")
                     break;
             }
+
+            UI_ENHANCER.PrintDivider();
+
+            UI_ENHANCER.DisplayBotMessage(
+                "Session ended. Stay safe online."
+            );
         }
     }
 }
