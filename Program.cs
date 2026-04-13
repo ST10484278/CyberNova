@@ -9,14 +9,17 @@ namespace CyberNova
         {
             UI_ENHANCER.SetConsoleStyle();
 
+            // Create an instance of the chatbot
             CyberNovaBot bot = new CyberNovaBot();
 
-            bot.PlayGreetingAudio();
+
+            // Play greeting audio
+            bot.PlayGreetingAudio();   
 
             UI_ENHANCER.DisplayWelcomeBanner();
 
-            UI_ENHANCER.DisplayHeader("User Setup");
 
+            // Ask the user for their name
             Console.WriteLine("Please enter your name to begin the conversation.");
             string userName = Console.ReadLine();
 
@@ -27,13 +30,13 @@ namespace CyberNova
                 "! I am CyberNova, your cybersecurity assistant."
             );
 
-            UI_ENHANCER.DisplayHeader("Available Commands");
-
+            // Display instructions
             Console.WriteLine("Type 'help' to see topics");
             Console.WriteLine("Type 'exit' to quit");
 
             UI_ENHANCER.PrintDivider();
 
+            // MAIN CONVERSATION LOOP
             while (true)
             {
                 UI_ENHANCER.DisplayUserPrompt();

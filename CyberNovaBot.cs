@@ -8,27 +8,35 @@ namespace CyberNova
     public class CyberNovaBot
     {
 
+        /// This class has the following Responsibilities:
+        /// - Plays greeting audio when the program starts
+        /// - Processes user input
+        /// - Matches keywords to cybersecurity topics
+        /// - Returns appropriate responses
+        /// - Provides help information to the user
+        /// 
+
+
         // METHOD TO PLAY GREETING AUDIO
         public void PlayGreetingAudio()
         {
             try
             {
-                Console.WriteLine("Program directory:");
-                Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
+                
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                    "greeting.wav");
 
-                string path = Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "greeting.wav"
-                );
 
+                // Check if the audio file exists
                 if (File.Exists(path))
                 {
                     Console.WriteLine("Audio file found. Playing sound...");
                     SoundPlayer player = new SoundPlayer(path);
-                    player.PlaySync();
+                    player.PlaySync();      // Play the sound and wait until it finishes
                 }
                 else
-                {
+                {   
+                    // Inform the user if the file is missing
                     Console.WriteLine("Audio file NOT found at:");
                     Console.WriteLine(path);
                 }
@@ -41,17 +49,15 @@ namespace CyberNova
         }
 
         public string GetResponse(string userInput, string userName)
+
         {
+            // Check if the input is empty
             if (string.IsNullOrWhiteSpace(userInput))
                 return "Please type a question.";
 
             string input = userInput.ToLower().Trim();
 
-            // Greetings
-            if (input.Contains("hello") || input.Contains("hi") || input.Contains("hey"))
-            {
-                return "Hello! I am CyberNova, your cybersecurity assistant.";
-            }
+          
 
             // Small talk
             if (input.Contains("how are you"))
@@ -120,6 +126,29 @@ namespace CyberNova
             if (input.Contains("privacy"))
             {
                 return "Protect your privacy by using strong passwords, enabling two-factor authentication, and avoiding sharing personal information online.";
+            }
+
+            Random rand = new Random();
+
+            string[] replies =
+                               {
+                                    "You're welcome!",
+                                    "No problem! I'm happy to help.",
+                                    "Glad I could assist you.",
+                                    "Anytime! Stay safe online.",
+                                    "You're welcome! Let me know if you need anything else."
+                               };
+
+            if (
+                input.Contains("thank") ||
+                input.Contains("thanks") ||
+                input.Contains("thank you") ||
+                input.Contains("ok") ||
+                input.Contains("okay") ||
+                input.Contains("alright")
+            )
+            {
+                return replies[rand.Next(replies.Length)];
             }
 
             // Help command

@@ -22,13 +22,6 @@ namespace CyberNova
                 Console.WriteLine("==============================================================");
             }
 
-            // Section header
-            public static void DisplayHeader(string title)
-            {
-                Console.WriteLine();
-                Console.WriteLine(">>>>> " + title.ToUpper());
-                PrintDivider();
-            }
 
             // Bot typing simulation
             public static void SimulateTyping(string message)
