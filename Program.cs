@@ -7,33 +7,8 @@ namespace CyberNova
         static void Main(string[] args)
         {
             CyberNovaBot bot = new CyberNovaBot();
-            try
-            {
-                Console.WriteLine("Program directory:");
-                Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
-
-                string path = Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "greeting.wav"
-                );
-
-                if (File.Exists(path))
-                {
-                    Console.WriteLine("Audio file found. Playing sound...");
-                    SoundPlayer player = new SoundPlayer(path);
-                    player.PlaySync();
-                }
-                else
-                {
-                    Console.WriteLine("Audio file NOT found at:");
-                    Console.WriteLine(path);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Audio file could not be played.");
-                Console.WriteLine(ex.Message);
-            }
+            bot.PlayGreetingAudio();
+            
             Console.WriteLine("========================================================================");
             Console.WriteLine(@"_________       ______             _____   ________               
 __  ____/____  ____  /________________  | / /_  __ \__   _______ _
@@ -46,6 +21,8 @@ _  /    __  / / /_  __ \  _ \_  ___/_   |/ /_  / / /_ | / /  __ `/
             Console.WriteLine("Please enter your name to begin the conversation.");
             string userName = Console.ReadLine();
             Console.WriteLine("Hello " + userName + "! Welcome to cybersecurity chatbot.");
+
+
 
 
 
